@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Soni - AI Consultant</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #1e1e1e;
+            --accent-purple: #b19cd9;
+            --accent-yellow: #ffd95a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #2a2a2a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Sidebar - Profile Card */
+        .sidebar {
+            width: 380px;
+            background: var(--bg-secondary);
+            padding: 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .profile-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            border: 3px solid var(--accent-purple);
+        }
+
+        .status-indicator {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: #4ade80;
+            border-radius: 50%;
+            border: 3px solid var(--bg-card);
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            display: inline-block;
+            background: rgba(177, 156, 217, 0.15);
+            color: var(--accent-yellow);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .profile-info {
+            text-align: left;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .info-item:hover {
+            background: rgba(177, 156, 217, 0.1);
+        }
+
+        .info-icon {
+            font-size: 1.3rem;
+            color: var(--accent-yellow);
+            width: 30px;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .social-icon:hover {
+            background: var(--accent-purple);
+            transform: translateY(-3px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 380px;
+            flex: 1;
+            padding: 0;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: var(--bg-secondary);
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-purple);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 3rem;
+            max-width: 1100px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .section-underline {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-yellow));
+            border-radius: 2px;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlight-text {
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        /* Core Expertise */
+        .expertise-section {
+            margin-top: 3rem;
+        }
+
+        .expertise-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .expertise-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .expertise-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .expertise-item {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .expertise-item::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: var(--accent-yellow);
+            font-size: 1.2rem;
+        }
+
+        .expertise-item strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 10px 40px rgba(177, 156, 217, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #b19cd9 0%, #ffd95a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(177, 156, 217, 0.15);
+            color: var(--accent-purple);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--accent-yellow);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            color: var(--accent-purple);
+            transform: translateX(5px);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 10px 30px rgba(177, 156, 217, 0.2);
+        }
+
+        .contact-icon-large {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-yellow);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            max-width: 700px;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(177, 156, 217, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-yellow);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(177, 156, 217, 0.3);
+        }
+
+        .btn-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 320px;
+            }
+            
+            .main-content {
+                margin-left: 320px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .top-nav {
+                padding: 1rem 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .content-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-purple);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-yellow);
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("ri6lkTJwimp0gfatu");
+        })();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar - Profile Card -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <img src="profile.jpg" alt="Abhishek Soni" class="profile-image">
+                    <div class="status-indicator"></div>
+                </div>
+                
+                <h1 class="profile-name">Abhishek Soni</h1>
+                <div class="profile-title">AI Consultant</div>
+
+                <div class="profile-info">
+                    <div class="info-item">
+                        <div class="info-icon">📧</div>
+                        <div class="info-content">
+                            <div class="info-label">Email</div>
+                            <div class="info-value">workecho9@gmail.com</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/abhisheksoniii/" target="_blank" class="social-icon" title="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <nav class="top-nav">
+                <a href="javascript:void(0)" class="nav-link active" onclick="showSection('about', this)">About</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showSection('portfolio', this)">Portfolio</a>
+                <a href="javascript:void(0)" class="nav-link" onclick="showSection('contact', this)">Contact</a>
+            </nav>
+
+            <!-- About Section -->
+            <section id="about" class="content-section section-content">
+                <div class="section-header">
+                <div class="section-header">
+                    <span class="section-icon">👨‍💼</span>
+                    <div>
+                        <h2 class="section-title">About Me</h2>
+                        <div class="section-underline"></div>
+                    </div>
+                </div>
+
+                <p class="about-text">
+                    I'm <strong>Abhishek Soni</strong>, an <span class="highlight-text">AI Consultant</span> and <span class="highlight-text">Automation Architect</span> passionate about building intelligent, end-to-end automation systems that seamlessly connect <strong>apps, data, and AI</strong> to deliver measurable business results.
+                </p>
+
+                <p class="about-text">
+                    With hands-on expertise in <strong>n8n, Make.com</strong>, and <strong>Zapier</strong>, I specialize in crafting <span class="highlight-text">AI-powered automation workflows</span> that streamline operations, eliminate repetitive work, and accelerate growth — across tools like <strong>Google Sheets, Notion, Slack, HubSpot, ClickUp, Trello</strong> and <strong>WhatsApp</strong>.
+                </p>
+
+                <p class="about-text">
+                    My focus lies in <strong>Agentic Workflows</strong>, <strong>AI Integrations</strong>, and <strong>Process Automation</strong> — empowering teams to build systems that can <em>think, learn, and execute</em> autonomously.
+                </p>
+
+                <!-- Core Expertise -->
+                <div class="expertise-section">
+                    <div class="expertise-header">
+                        <span>🎯</span>
+                        <h3>My Core Expertise</h3>
+                    </div>
+                    <ul class="expertise-list">
+                        <li class="expertise-item">Build end-to-end automations in <strong>n8n, Make.com</strong> and <strong>Zapier</strong></li>
+                        <li class="expertise-item">Develop conversational AI agents integrated with <strong>ChatGPT, Claude, Perplexity</strong>, or <strong>Vapi.ai</strong></li>
+                        <li class="expertise-item">Automate data pipelines with <strong>Google Sheets, Airtable</strong>, and <strong>PostgreSQL</strong></li>
+                        <li class="expertise-item">Create intelligent chatbots for <strong>Telegram, Slack</strong>, and <strong>WhatsApp</strong></li>
+                        <li class="expertise-item">Integrate CRMs, marketing tools, and custom APIs</li>
+                        <li class="expertise-item">Implement <strong>RAG</strong>, memory, and <strong>vector database</strong>–based AI systems</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="content-section section-content" style="display: none;">
+                <div class="section-header">
+                <div class="section-header">
+                    <span class="section-icon">💼</span>
+                    <div>
+                        <h2 class="section-title">Featured Projects</h2>
+                        <div class="section-underline"></div>
+                    </div>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">🤖</div>
+                        <div class="project-content">
+                            <h3 class="project-title">AI-Powered Customer Support Automation</h3>
+                            <p class="project-description">
+                                Developed an intelligent customer support system that reduced response time by 70% and autonomously handled 80% of customer queries using GPT-4 integration.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">GPT-4</span>
+                                <span class="tag">n8n</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">API Integration</span>
+                                <span class="tag">Slack</span>
+                            </div>
+                            <a href="#" class="project-link">View Details →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">📊</div>
+                        <div class="project-content">
+                            <h3 class="project-title">Business Intelligence Scraper</h3>
+                            <p class="project-description">
+                                Built a comprehensive web scraping solution that aggregates market data from 50+ sources, providing real-time competitive intelligence and automated reporting.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">BeautifulSoup</span>
+                                <span class="tag">Selenium</span>
+                                <span class="tag">PostgreSQL</span>
+                                <span class="tag">Make.com</span>
+                            </div>
+                            <a href="#" class="project-link">View Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="content-section section-content" style="display: none;">
+                <div class="section-header">
+                <div class="section-header">
+                    <span class="section-icon">📬</span>
+                    <div>
+                        <h2 class="section-title">Contact</h2>
+                        <div class="section-underline"></div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="name" placeholder="Your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span class="btn-icon">✈️</span>
+                            <span class="btn-text">Send Message</span>
+                        </button>
+                    </form>
+                    <div id="formMessage" style="margin-top: 1rem; text-align: center; font-weight: 600;"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Section Navigation
+        function showSection(sectionId, clickedLink) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Add active class to clicked nav link
+            clickedLink.classList.add('active');
+        }
+        
+        // EmailJS Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const formMessage = document.getElementById('formMessage');
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            btnText.textContent = 'Sending...';
+            formMessage.textContent = '';
+            
+            // Send email using EmailJS
+            emailjs.sendForm('service_dy0na9q', 'template_x63znvm', this)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    formMessage.style.color = '#4ade80';
+                    formMessage.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+                    
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                    
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'Send Message';
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    formMessage.style.color = '#ef4444';
+                    formMessage.textContent = '✗ Failed to send message. Please try again or email directly.';
+                    
+                    // Re-enable button
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'Send Message';
+                });
+        });
+    </script>
+</body>
+</html>
