@@ -38,8 +38,8 @@
         /* Left Sidebar - Profile Card */
         .sidebar {
             width: 380px;
-            background: var(--bg-secondary);
-            padding: 2rem;
+            background: var(--bg-primary);
+            padding: 2rem 2rem;
             position: fixed;
             height: 100vh;
             overflow-y: auto;
@@ -49,78 +49,96 @@
         .profile-card {
             background: var(--bg-card);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 2rem 2rem;
             text-align: center;
             border: 1px solid var(--border-color);
         }
 
         .profile-image-container {
             position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 1.5rem;
+            width: 155px;
+            height: 155px;
+            margin: 0 auto 1.3rem;
         }
 
         .profile-image {
             width: 100%;
             height: 100%;
-            border-radius: 20px;
+            border-radius: 24px;
             object-fit: cover;
             border: 3px solid var(--accent-purple);
         }
 
         .status-indicator {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 20px;
-            height: 20px;
+            bottom: 9px;
+            right: 9px;
+            width: 19px;
+            height: 19px;
             background: #4ade80;
             border-radius: 50%;
             border: 3px solid var(--bg-card);
         }
 
         .profile-name {
-            font-size: 1.8rem;
+            font-size: 1.65rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .profile-title {
             display: inline-block;
-            background: rgba(177, 156, 217, 0.15);
+            background: transparent;
             color: var(--accent-yellow);
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
+            padding: 0.6rem 1.4rem;
+            border-radius: 20px;
+            border: 1px solid var(--accent-yellow);
+            font-size: 0.88rem;
             font-weight: 600;
-            margin-bottom: 2rem;
+            margin-bottom: 1.6rem;
         }
 
         .profile-info {
             text-align: left;
-            margin-top: 2rem;
+            margin-top: 1.6rem;
         }
 
         .info-item {
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            margin-bottom: 0.5rem;
-            background: var(--bg-secondary);
-            border-radius: 10px;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0;
+            margin-bottom: 1.3rem;
+            background: transparent;
+            border-radius: 0;
             transition: all 0.3s;
         }
 
-        .info-item:hover {
-            background: rgba(177, 156, 217, 0.1);
+        .info-item:hover .info-value {
+            color: var(--accent-yellow);
+        }
+
+        .info-item:hover .info-icon svg {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
 
         .info-icon {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             color: var(--accent-yellow);
-            width: 30px;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-icon svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
         }
 
         .info-content {
@@ -128,35 +146,41 @@
         }
 
         .info-label {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.2rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
         }
 
         .info-value {
             color: var(--text-primary);
-            font-size: 0.95rem;
-            word-break: break-all;
+            font-size: 0.94rem;
+            word-break: break-word;
+            line-height: 1.5;
+            transition: color 0.3s;
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.3rem;
+            margin-top: 1.6rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid var(--border-color);
         }
 
         .social-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--bg-secondary);
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: all 0.3s;
             cursor: pointer;
             text-decoration: none;
@@ -164,87 +188,92 @@
         }
 
         .social-icon:hover {
-            background: var(--accent-purple);
-            transform: translateY(-3px);
+            background: var(--bg-secondary);
+            border-color: var(--accent-yellow);
+            transform: translateY(-2px);
         }
 
         /* Main Content */
         .main-content {
             margin-left: 380px;
             flex: 1;
-            padding: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Top Navigation */
         .top-nav {
-            background: var(--bg-secondary);
-            padding: 1.5rem 3rem;
+            background: var(--bg-card);
+            padding: 0.8rem 2rem;
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            gap: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            width: 100%;
+            max-width: 900px;
         }
 
         .nav-link {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
             position: relative;
+            padding: 0.5rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.98rem;
         }
 
-        .nav-link.active,
+        .nav-link.active {
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
         .nav-link:hover {
             color: var(--text-primary);
-        }
-
-        .nav-link.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1.5rem;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--accent-purple);
+            background: var(--bg-secondary);
         }
 
         /* Content Sections */
         .content-section {
-            padding: 4rem 3rem;
-            max-width: 1100px;
+            padding: 2.2rem;
+            max-width: 900px;
+            width: 100%;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
         }
 
         .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .section-icon {
-            font-size: 2rem;
+            display: none;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 1.75rem;
             font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
         .section-underline {
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-yellow));
+            width: 50px;
+            height: 3px;
+            background: var(--accent-yellow);
             border-radius: 2px;
         }
 
         .about-text {
             color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
         }
 
         .about-text strong {
@@ -259,32 +288,33 @@
 
         /* Core Expertise */
         .expertise-section {
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .expertise-header {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .expertise-header h3 {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 600;
         }
 
         .expertise-list {
             list-style: none;
             display: grid;
-            gap: 1rem;
+            gap: 0.75rem;
         }
 
         .expertise-item {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 0.95rem;
             padding-left: 1.5rem;
             position: relative;
+            line-height: 1.6;
         }
 
         .expertise-item::before {
@@ -292,7 +322,7 @@
             position: absolute;
             left: 0;
             color: var(--accent-yellow);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .expertise-item strong {
@@ -303,64 +333,65 @@
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .project-card {
-            background: var(--bg-card);
-            border-radius: 15px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-color);
             transition: all 0.3s;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-purple);
-            box-shadow: 0 10px 40px rgba(177, 156, 217, 0.2);
+            transform: translateY(-3px);
+            border-color: var(--accent-yellow);
+            box-shadow: 0 8px 25px rgba(255, 217, 90, 0.15);
         }
 
         .project-image {
             width: 100%;
-            height: 220px;
+            height: 160px;
             background: linear-gradient(135deg, #b19cd9 0%, #ffd95a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 3.2rem;
         }
 
         .project-content {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .project-title {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
         }
 
         .project-description {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
+            margin-bottom: 1.1rem;
+            line-height: 1.6;
+            font-size: 0.92rem;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+            margin-bottom: 1.1rem;
         }
 
         .tag {
             background: rgba(177, 156, 217, 0.15);
             color: var(--accent-purple);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
             font-weight: 500;
         }
 
@@ -369,6 +400,7 @@
             color: var(--accent-yellow);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.93rem;
             transition: all 0.3s;
         }
 
@@ -380,15 +412,15 @@
         /* Contact Section */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .contact-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 15px;
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             text-align: center;
             transition: all 0.3s;
@@ -397,62 +429,62 @@
         }
 
         .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-purple);
-            box-shadow: 0 10px 30px rgba(177, 156, 217, 0.2);
+            transform: translateY(-3px);
+            border-color: var(--accent-yellow);
+            box-shadow: 0 8px 20px rgba(255, 217, 90, 0.15);
         }
 
         .contact-icon-large {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
             color: var(--accent-yellow);
         }
 
         .contact-card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.08rem;
         }
 
         .contact-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* Contact Form */
         .contact-form-container {
-            max-width: 700px;
-            margin-top: 2rem;
+            max-width: 100%;
+            margin-top: 1rem;
         }
 
         .contact-form {
-            background: var(--bg-card);
-            padding: 3rem;
-            border-radius: 15px;
+            background: var(--bg-secondary);
+            padding: 1.8rem;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
         }
 
         .form-group {
-            margin-bottom: 2rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
             color: var(--text-primary);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
-            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
+            border-radius: 8px;
             color: var(--text-primary);
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             transition: all 0.3s;
         }
 
@@ -465,22 +497,22 @@
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: var(--text-secondary);
+            color: #5a5a5a;
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 150px;
+            min-height: 110px;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 0.9rem;
             background: var(--accent-yellow);
             color: var(--bg-primary);
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
+            border-radius: 8px;
+            font-size: 0.96rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
@@ -493,24 +525,14 @@
         .submit-btn:hover {
             background: var(--accent-purple);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(177, 156, 217, 0.3);
+            box-shadow: 0 8px 25px rgba(177, 156, 217, 0.3);
         }
 
         .btn-icon {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .sidebar {
-                width: 320px;
-            }
-            
-            .main-content {
-                margin-left: 320px;
-            }
-        }
-
         @media (max-width: 968px) {
             .container {
                 flex-direction: column;
@@ -522,19 +544,21 @@
                 height: auto;
                 border-right: none;
                 border-bottom: 1px solid var(--border-color);
+                padding: 1.5rem;
             }
 
             .main-content {
                 margin-left: 0;
+                padding: 1.5rem;
             }
 
             .top-nav {
-                padding: 1rem 1.5rem;
-                gap: 1.5rem;
+                padding: 0.75rem 1.2rem;
+                gap: 1rem;
             }
 
             .content-section {
-                padding: 3rem 1.5rem;
+                padding: 1.8rem;
             }
 
             .projects-grid {
@@ -549,7 +573,7 @@
 
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 9px;
         }
 
         ::-webkit-scrollbar-track {
@@ -587,7 +611,11 @@
 
                 <div class="profile-info">
                     <div class="info-item">
-                        <div class="info-icon">📧</div>
+                        <div class="info-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
                         <div class="info-content">
                             <div class="info-label">Email</div>
                             <div class="info-value">abhisheksonii2026@gmail.com</div>
@@ -618,7 +646,6 @@
             <!-- About Section -->
             <section id="about" class="content-section section-content">
                 <div class="section-header">
-                <div class="section-header">
                     <span class="section-icon">👨‍💼</span>
                     <div>
                         <h2 class="section-title">About Me</h2>
@@ -627,22 +654,30 @@
                 </div>
 
                 <p class="about-text">
-                    I'm <strong>Abhishek Soni</strong>, an <span class="highlight-text">AI Consultant</span> and <span class="highlight-text">Automation Architect</span> passionate about building intelligent, end-to-end automation systems that seamlessly connect <strong>apps, data, and AI</strong> to deliver measurable business results.
+                    Welcome! I'm <strong>Abhishek Soni</strong>, an <span class="highlight-text">AI Consultant</span> and <span class="highlight-text">Automation Architect</span> with over a year of deep, practical experience in identifying operational bottlenecks and engineering AI-powered automation systems that directly solve them.
                 </p>
 
                 <p class="about-text">
-                    With hands-on expertise in <strong>n8n, Make.com</strong>, and <strong>Zapier</strong>, I specialize in crafting <span class="highlight-text">AI-powered automation workflows</span> that streamline operations, eliminate repetitive work, and accelerate growth — across tools like <strong>Google Sheets, Notion, Slack, HubSpot, ClickUp, Trello</strong> and <strong>WhatsApp</strong>.
+                    I specialize in designing and <strong>implementing intelligent solutions</strong> that reshape how businesses operate — from <strong>AI agents</strong> and <strong>custom web scrapers</strong> to fully automated assistants built on modern, cutting-edge technologies.
                 </p>
 
                 <p class="about-text">
-                    My focus lies in <strong>Agentic Workflows</strong>, <strong>AI Integrations</strong>, and <strong>Process Automation</strong> — empowering teams to build systems that can <em>think, learn, and execute</em> autonomously.
+                    My journey in AI began in <strong>2023</strong>, fueled by the curiosity to see how intelligent systems could solve real business problems. What started as small experiments in automating repetitive tasks quickly evolved into building full-scale <span class="highlight-text">agentic workflows</span>, <strong>custom scrapers</strong>, and <strong>end-to-end automation systems</strong> that eliminate hours of manual work.
+                </p>
+
+                <p class="about-text">
+                    That path led me to launch my own company, where I now architect AI-driven automations that streamline workflows, reduce costs, and unlock meaningful growth.
+                </p>
+
+                <p class="about-text">
+                    My approach is simple: <span class="highlight-text">identify inefficiencies → engineer intelligent solutions → return lost time</span> so teams can focus on revenue and impact.
                 </p>
 
                 <!-- Core Expertise -->
                 <div class="expertise-section">
                     <div class="expertise-header">
                         <span>🎯</span>
-                        <h3>My Core Expertise</h3>
+                        <h2>My Core Expertise</h2>
                     </div>
                     <ul class="expertise-list">
                         <li class="expertise-item">Build end-to-end automations in <strong>n8n, Make.com</strong> and <strong>Zapier</strong></li>
@@ -657,7 +692,6 @@
 
             <!-- Portfolio Section -->
             <section id="portfolio" class="content-section section-content" style="display: none;">
-                <div class="section-header">
                 <div class="section-header">
                     <span class="section-icon">💼</span>
                     <div>
@@ -708,7 +742,6 @@
             <!-- Contact Section -->
             <section id="contact" class="content-section section-content" style="display: none;">
                 <div class="section-header">
-                <div class="section-header">
                     <span class="section-icon">📬</span>
                     <div>
                         <h2 class="section-title">Contact</h2>
@@ -720,17 +753,17 @@
                     <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" name="name" placeholder="Your full name" required>
+                            <input type="text" id="fullName" name="from_name" placeholder="Your full name" required>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                            <input type="email" id="email" name="from_email" placeholder="your.email@example.com" required>
                         </div>
 
                         <div class="form-group">
                             <label for="message">Your Message</label>
-                            <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                            <textarea id="message" name="message" rows="4" placeholder="Write your message here..." required></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn" id="submitBtn">
@@ -780,7 +813,7 @@
             formMessage.textContent = '';
             
             // Send email using EmailJS
-            emailjs.sendForm('service_dy0na9q', 'template_x63znvm', this)
+            emailjs.sendForm('service_dy0na9q', 'template_j4mqsnt', this)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     formMessage.style.color = '#4ade80';
